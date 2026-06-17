@@ -8,13 +8,11 @@ plugins {
 
 android {
   namespace = "com.example"
-  compileSdk = 36
-  ndkVersion = "27.0.12077973"
-
-  defaultConfig {
+  compileSdk = 35
+    defaultConfig {
     applicationId = "io.github.nitaistudio.twa"
     minSdk = 24
-    targetSdk = 36
+    targetSdk = 35
     versionCode = 112
     versionName = "112"
 
@@ -86,7 +84,7 @@ dependencies {
   // implementation(libs.androidx.camera.lifecycle)
   // implementation(libs.androidx.camera.view)
   implementation(libs.androidx.compose.material.icons.core)
-  // implementation(libs.androidx.compose.material.icons.extended)
+  implementation(libs.androidx.compose.material.icons.extended)
   implementation(libs.androidx.compose.material3)
   implementation(libs.androidx.compose.ui)
   implementation(libs.androidx.compose.ui.graphics)
