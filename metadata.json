@@ -1,0 +1,8 @@
+{
+  "name": "Duty Tracker Pro",
+  "description": "A 100% native professional duty calendar, salary calculation and advance tracking system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

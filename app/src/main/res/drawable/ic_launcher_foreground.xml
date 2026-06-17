@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Subtle drop shadow for depth -->
+    <path
+        android:fillColor="#1F000000"
+        android:pathData="M41,31 h28 c3.3,0 6,2.7 6,6 v30 c0,3.3 -2.7,6 -6,6 H41c-3.3,0 -6,-2.7 -6,-6 V37c0,-3.3 2.7,-6 6,-6 z" />
+    
+    <!-- Top clip tab -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,20 a6,6 0 1,1 0,12 a6,6 0 1,1 0,-12" />
+        
+    <!-- Main white card body of the badge -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,28 h28 c3.3,0 6,2.7 6,6 v30 c0,3.3 -2.7,6 -6,6 H40c-3.3,0 -6,-2.7 -6,-6 V34c0,-3.3 2.7,-6 6,-6 z" />
+        
+    <!-- Badge clip hole (colored with background accent brand color) -->
+    <path
+        android:fillColor="#5B00E3"
+        android:pathData="M54,23.5 a2.5,2.5 0 1,1 0,5 a2.5,2.5 0 1,1 0,-5" />
+        
+    <!-- Avatar Head (colored with background accent brand color) -->
+    <path
+        android:fillColor="#5B00E3"
+        android:pathData="M54,36.5 a5.5,5.5 0 1,1 0,11 a5.5,5.5 0 1,1 0,-11" />
+        
+    <!-- Avatar Shoulders (colored with background accent brand color) -->
+    <path
+        android:fillColor="#5B00E3"
+        android:pathData="M43,64 c0,-5.5 4.9,-10 11,-10 s11,4.5 11,10 v3 H43 z" />
+
+</vector>
