@@ -319,7 +319,11 @@ class DutyViewModel(application: Application) : AndroidViewModel(application) {
     val appLanguage = MutableStateFlow("en")
 
     init {
-        firebaseManager.startListeningToAppConfig()
+        try {
+            firebaseManager.startListeningToAppConfig()
+        } catch (e: Exception) {
+            android.util.Log.e("DutyViewModel", "Firebase listener error: ${e.message}")
+        }
         
         // Auto-load session if recorded in SharedPreferences
         val prefs = context.getSharedPreferences("duty_tracker_prefs", Context.MODE_PRIVATE)
