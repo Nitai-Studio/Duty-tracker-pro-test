@@ -25,7 +25,7 @@ class FirebaseManager private constructor(context: Context) {
         var initializedApp: FirebaseApp? = null
         try {
             val apps = FirebaseApp.getApps(context)
-            if (apps.isEmpty()) {
+            initializedApp = if (apps.isEmpty()) {
                 val options = FirebaseOptions.Builder()
                     .setApiKey("AIzaSyDxqq2PBqrtkTsygyMcIDOvZyx2_-x4QRk")
                     .setApplicationId("1:716525293622:web:880f39084c86180fbb0897")
@@ -33,20 +33,41 @@ class FirebaseManager private constructor(context: Context) {
                     .setProjectId("duty-tracker-pro")
                     .setStorageBucket("duty-tracker-pro.firebasestorage.app")
                     .build()
-                initializedApp = FirebaseApp.initializeApp(context, options)
+                FirebaseApp.initializeApp(context, options)
             } else {
-                initializedApp = apps[0]
+                apps[0]
             }
         } catch (e: Exception) {
             Log.e("FirebaseManager", "Error initializing Firebase: ${e.message}")
         }
-        
-        val db = if (initializedApp != null) {
-            FirebaseDatabase.getInstance(initializedApp)
-        } else {
-            FirebaseDatabase.getInstance()
+
+        dbRef = try {
+            val db = if (initializedApp != null) {
+                FirebaseDatabase.getInstance(initializedApp)
+            } else {
+                FirebaseDatabase.getInstance()
+            }
+            db.reference
+        } catch (e: Exception) {
+            Log.e("FirebaseManager", "Error getting database reference, retrying with explicit options: ${e.message}")
+            // Last-resort fallback: force-create a fresh named app with explicit options
+            try {
+                val fallbackOptions = FirebaseOptions.Builder()
+                    .setApiKey("AIzaSyDxqq2PBqrtkTsygyMcIDOvZyx2_-x4QRk")
+                    .setApplicationId("1:716525293622:web:880f39084c86180fbb0897")
+                    .setDatabaseUrl("https://duty-tracker-pro-default-rtdb.firebaseio.com")
+                    .setProjectId("duty-tracker-pro")
+                    .build()
+                val fallbackApp = FirebaseApp.initializeApp(context, fallbackOptions, "fallback_app_${System.currentTimeMillis()}")
+                FirebaseDatabase.getInstance(fallbackApp).reference
+            } catch (e2: Exception) {
+                Log.e("FirebaseManager", "Fallback Firebase init also failed: ${e2.message}")
+                // Absolute last resort - this line should be unreachable in practice,
+                // but if FirebaseDatabase.getInstance() truly cannot construct a reference,
+                // rethrowing here at least gives a clear crash log instead of a silent one.
+                throw e2
+            }
         }
-        dbRef = db.reference
     }
 
     companion object {
