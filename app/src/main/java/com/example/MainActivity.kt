@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
-            StartAppSDK.init(this, "205257935", true)
+            StartAppSDK.init(this, "204217828", true)
             StartAppSDK.enableReturnAds(false)
         } catch (e: Exception) {
             e.printStackTrace()
