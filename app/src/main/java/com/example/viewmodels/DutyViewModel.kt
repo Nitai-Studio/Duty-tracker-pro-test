@@ -80,6 +80,12 @@ class DutyViewModel(application: Application) : AndroidViewModel(application) {
     private val _userProfile = MutableStateFlow<UserProfile?>(null)
     val userProfile: StateFlow<UserProfile?> = _userProfile
 
+    // Saved phone/cc for PIN screen display
+    private val _savedPhone = MutableStateFlow("")
+    val savedPhone: StateFlow<String> = _savedPhone.asStateFlow()
+    private val _savedCc = MutableStateFlow("+91")
+    val savedCc: StateFlow<String> = _savedCc.asStateFlow()
+
     // PIN Verification flows
     private val _pinEntryMode = MutableStateFlow("verify") // verify, set, change
     val pinEntryMode: StateFlow<String> = _pinEntryMode
